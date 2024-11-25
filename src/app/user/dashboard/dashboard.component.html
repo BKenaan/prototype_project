@@ -1,0 +1,12 @@
+<div class="dashboard">
+    <h2>Active Orders</h2>
+    <ul>
+      <li *ngFor="let order of activeOrders">
+        Order ID: {{ order.id }}, Total: {{ order.total | currency }}
+      </li>
+    </ul>
+  
+    <h2>Total Savings</h2>
+    <p>{{ totalSavings | currency }}</p>
+  </div>
+  
