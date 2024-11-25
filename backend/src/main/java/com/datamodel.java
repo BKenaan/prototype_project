@@ -1,20 +1,21 @@
 package com;
 import java.util.*;
 
+
 public class datamodel {
 
     // Cart Model
-public class Cart {
+public static class Cart {
     private String cartId;
     private String hostId;
-    private List<String> participants; // List of student IDs
+    private List<String> participants; 
     private List<Item> items;
     private String status; // e.g., "Open", "Finalized"
     private double groupDeliveryFee;
     private Date deadline;
 
     // Constructor
-    public Cart(String cartId, String hostId, List<String> participants, List<Item> items, String status, double groupDeliveryFee, Date deadline) {
+    public  Cart(String cartId, String hostId, List<String> participants, List<Item> items, String status, double groupDeliveryFee, Date deadline) {
         this.cartId = cartId;
         this.hostId = hostId;
         this.participants = participants;
@@ -80,10 +81,39 @@ public class Cart {
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
+
+    // Additional Utility Methods
+
+    public void addItem(Item item) {
+        if (this.items == null) {
+            this.items = new ArrayList<>();
+        }
+        this.items.add(item);
+    }
+
+    public boolean removeItem(String itemId, String userId) {
+        if (this.items == null) {
+            return false; 
+        }
+
+        for (Item item : this.items) {
+            if (item.getItemId().equals(itemId) && item.getUserId().equals(userId)) {
+                this.items.remove(item);
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    public List<Item> viewItems() {
+        return this.items;
+    }
 }
 
+
+
 // Item Model
-public class Item {
+public static class Item {
     private String itemId;
     private String productId;
     private String userId;
@@ -142,7 +172,7 @@ public class Item {
 }
 
 // Product Model
-public class Product {
+public static class Product {
     private String productId;
     private String name;
     private double price;
@@ -191,14 +221,18 @@ public class Product {
 }
 
 // SavingsSummary Model
-public class SavingsSummary {
-    private double totalSavings;
-    private Map<String, Double> userSavings;
+public static class SavingsSummary {
+    private double totalSavings;            
+    private double individualSavings;       
+    private double totalDeliveryFee;        
+    private int numberOfParticipants;       
 
     // Constructor
-    public SavingsSummary(double totalSavings, Map<String, Double> userSavings) {
+    public SavingsSummary(double totalSavings, double individualSavings, double totalDeliveryFee, int numberOfParticipants) {
         this.totalSavings = totalSavings;
-        this.userSavings = userSavings;
+        this.individualSavings = individualSavings;
+        this.totalDeliveryFee = totalDeliveryFee;
+        this.numberOfParticipants = numberOfParticipants;
     }
 
     // Getters and Setters
@@ -210,17 +244,34 @@ public class SavingsSummary {
         this.totalSavings = totalSavings;
     }
 
-    public Map<String, Double> getUserSavings() {
-        return userSavings;
+    public double getIndividualSavings() {
+        return individualSavings;
     }
 
-    public void setUserSavings(Map<String, Double> userSavings) {
-        this.userSavings = userSavings;
+    public void setIndividualSavings(double individualSavings) {
+        this.individualSavings = individualSavings;
+    }
+
+    public double getTotalDeliveryFee() {
+        return totalDeliveryFee;
+    }
+
+    public void setTotalDeliveryFee(double totalDeliveryFee) {
+        this.totalDeliveryFee = totalDeliveryFee;
+    }
+
+    public int getNumberOfParticipants() {
+        return numberOfParticipants;
+    }
+
+    public void setNumberOfParticipants(int numberOfParticipants) {
+        this.numberOfParticipants = numberOfParticipants;
     }
 }
 
+
 // Student Model
-public class Student {
+public static class Student {
     private String studentId;
     private String password;
 
