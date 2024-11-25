@@ -1,1 +1,26 @@
-<p>cart works!</p>
+<table class="table-auto w-full border-collapse border">
+  <thead>
+    <tr class="bg-gray-100">
+      <th class="px-4 py-2">Item</th>
+      <th class="px-4 py-2">Quantity</th>
+      <th class="px-4 py-2">Price</th>
+      <th class="px-4 py-2">Total</th>
+      <th class="px-4 py-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cartItems; let i = index">
+      <td class="px-4 py-2">{{ item.name }}</td>
+      <td class="px-4 py-2">
+        <input type="number" [(ngModel)]="item.quantity" min="0" class="w-16 text-center" />
+      </td>
+      <td class="px-4 py-2">${{ item.price }}</td>
+      <td class="px-4 py-2">${{ item.quantity * item.price }}</td>
+      <td class="px-4 py-2">
+        <button (click)="removeItem(i)" class="bg-red-500 text-white px-4 py-2 rounded">
+          Remove
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

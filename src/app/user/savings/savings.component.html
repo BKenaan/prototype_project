@@ -1,1 +1,30 @@
-<p>savings works!</p>
+<div class="savings-container p-4">
+  <h1 class="text-2xl font-bold text-center mb-6">Savings Overview</h1>
+
+  <!-- Table for savings categories -->
+  <div class="table-container overflow-x-auto">
+    <table class="table-auto w-full border-collapse border">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-4 py-2 border">Category</th>
+          <th class="px-4 py-2 border">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let saving of savingsData" class="hover:bg-gray-100">
+          <td class="px-4 py-2 border text-center">{{ saving.category }}</td>
+          <td class="px-4 py-2 border text-center">${{ saving.amount }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Placeholder for chart -->
+  <div class="chart-container mt-8">
+    <h2 class="text-xl font-bold text-center mb-4">Savings Distribution</h2>
+    <div class="chart-placeholder flex justify-center items-center h-64 bg-gray-100 border rounded">
+      <!-- Replace this div with a chart when integrated -->
+      <p class="text-gray-600">[Chart Placeholder]</p>
+    </div>
+  </div>
+</div>

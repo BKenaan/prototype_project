@@ -1,0 +1,37 @@
+/* General container for the savings page */
+.savings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Table styles */
+  .table-auto {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .table-auto thead {
+    font-weight: bold;
+  }
+  
+  .table-auto th,
+  .table-auto td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+  }
+  
+  /* Chart container styles */
+  .chart-container {
+    margin-top: 2rem;
+  }
+  
+  .chart-placeholder {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  

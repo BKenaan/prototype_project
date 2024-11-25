@@ -1,15 +1,22 @@
-<header>
-  <h1>{{ title }}</h1>
-  <nav>
-    <a routerLink="/savings">Savings</a> |
-    <a routerLink="/cart">Cart</a>
-  </nav>
+<!-- Header -->
+<header class="bg-blue-600 text-white py-4 shadow">
+  <div class="container mx-auto flex items-center justify-between px-4">
+    <h1 class="text-2xl font-bold">Prototype Project</h1>
+    <nav class="space-x-4">
+      <a routerLink="/" class="hover:text-gray-200">Home</a>
+      <a routerLink="/savings" class="hover:text-gray-200">Savings</a>
+      <a routerLink="/cart" class="hover:text-gray-200">Cart</a>
+      <a routerLink="/dashboard" class="hover:text-gray-200">Dashboard</a>
+    </nav>
+  </div>
 </header>
 
+<!-- Main Content -->
 <main>
   <router-outlet></router-outlet>
 </main>
 
-<footer>
-  <p>&copy; 2024 Prototype Project</p>
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-4 text-center">
+  © 2024 Prototype Project. All Rights Reserved.
 </footer>

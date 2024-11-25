@@ -1,12 +1,14 @@
-<div class="dashboard">
-    <h2>Active Orders</h2>
-    <ul>
-      <li *ngFor="let order of activeOrders">
-        Order ID: {{ order.id }}, Total: {{ order.total | currency }}
-      </li>
-    </ul>
-  
-    <h2>Total Savings</h2>
-    <p>{{ totalSavings | currency }}</p>
+<div class="grid grid-cols-3 gap-4">
+  <div class="p-4 bg-blue-100 rounded shadow">
+    <h3 class="text-lg font-bold text-blue-600">Total Savings</h3>
+    <p class="text-xl font-semibold">${{ totalSavings }}</p>
   </div>
-  
+  <div class="p-4 bg-green-100 rounded shadow">
+    <h3 class="text-lg font-bold text-green-600">Total Cart Value</h3>
+    <p class="text-xl font-semibold">${{ totalCartValue }}</p>
+  </div>
+  <div class="p-4 bg-yellow-100 rounded shadow">
+    <h3 class="text-lg font-bold text-yellow-600">Pending Orders</h3>
+    <p class="text-xl font-semibold">{{ pendingOrders }}</p>
+  </div>
+</div>
