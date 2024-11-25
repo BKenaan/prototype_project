@@ -1,3 +1,4 @@
+package com;
 import java.util.*;
 
 public class datamodel {
@@ -246,4 +247,5 @@ public class Student {
         this.password = password;
     }
     
+}
 }
