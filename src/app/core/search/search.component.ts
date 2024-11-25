@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-search',
+  standalone: true,
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })

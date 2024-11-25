@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { SavingsComponent } from './savings.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('SavingsComponent', () => {
-  let component: SavingsComponent;
-  let fixture: ComponentFixture<SavingsComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SavingsComponent], // Declare the component
-      schemas: [CUSTOM_ELEMENTS_SCHEMA], // Ignore unknown elements if any
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [SavingsComponent], // Import SavingsComponent as it's standalone
     }).compileComponents();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SavingsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
   it('should create', () => {
+    const fixture = TestBed.createComponent(SavingsComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
