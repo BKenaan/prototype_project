@@ -5,7 +5,8 @@ import { CartComponent } from './shared-cart/cart/cart.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'savings', component: SavingsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'dashboard', component: DashboardComponent},

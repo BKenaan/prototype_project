@@ -1,4 +1,11 @@
 h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    button {
+      all: unset; /* Remove default button styles */
+      display: block;
+      cursor: pointer;
+    }
+    
   }
+
   
