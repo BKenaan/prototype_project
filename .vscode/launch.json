@@ -4,6 +4,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.Main",
+      "projectName": "backend"
+    },
+    {
+      "type": "java",
       "name": "main",
       "request": "launch",
       "mainClass": "com.main",
