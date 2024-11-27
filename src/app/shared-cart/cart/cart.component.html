@@ -1,26 +1,95 @@
-<table class="table-auto w-full border-collapse border">
-  <thead>
-    <tr class="bg-gray-100">
-      <th class="px-4 py-2">Item</th>
-      <th class="px-4 py-2">Quantity</th>
-      <th class="px-4 py-2">Price</th>
-      <th class="px-4 py-2">Total</th>
-      <th class="px-4 py-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of cartItems; let i = index">
-      <td class="px-4 py-2">{{ item.name }}</td>
-      <td class="px-4 py-2">
-        <input type="number" [(ngModel)]="item.quantity" min="0" class="w-16 text-center" />
-      </td>
-      <td class="px-4 py-2">${{ item.price }}</td>
-      <td class="px-4 py-2">${{ item.quantity * item.price }}</td>
-      <td class="px-4 py-2">
-        <button (click)="removeItem(i)" class="bg-red-500 text-white px-4 py-2 rounded">
-          Remove
+<div class="container mx-auto p-4">
+  <!-- Cart Info Section -->
+  <div *ngIf="cart" class="bg-gray-100 rounded-lg shadow p-4 mb-6">
+    <h2 class="text-2xl font-semibold mb-4">Cart Details</h2>
+    <p><strong>Cart ID:</strong> {{ cart.cartId }}</p>
+    <p><strong>PIN:</strong> {{ cart.pin }}</p>
+    <p><strong>Host:</strong> {{ cart.hostId }}</p>
+    <p>
+      <strong>Participants:</strong>
+      {{ cart.participants.join(', ') || 'None' }}
+    </p>
+  </div>
+
+  <!-- Create Cart Section -->
+  <div class="bg-white rounded-lg shadow p-4 mb-6">
+    <h2 class="text-xl font-semibold mb-4">Create a New Cart</h2>
+    <div class="flex gap-4">
+      <input
+        type="text"
+        [(ngModel)]="participantId"
+        class="border rounded-lg p-2 flex-1"
+        placeholder="Your ID"
+      />
+      <button
+        (click)="createCart(participantId)"
+        class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+      >
+        Create Cart
+      </button>
+    </div>
+  </div>
+
+  <!-- Join Cart Section -->
+  <div class="bg-white rounded-lg shadow p-4 mb-6">
+    <h2 class="text-xl font-semibold mb-4">Join an Existing Cart</h2>
+    <div class="grid grid-cols-3 gap-4">
+      <input
+        type="text"
+        [(ngModel)]="cartIdInput"
+        class="border rounded-lg p-2"
+        placeholder="Cart ID"
+      />
+      <input
+        type="text"
+        [(ngModel)]="pinInput"
+        class="border rounded-lg p-2"
+        placeholder="PIN"
+      />
+      <button
+        (click)="joinCart(cartIdInput, pinInput)"
+        class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
+      >
+        Join Cart
+      </button>
+    </div>
+  </div>
+
+  <!-- Search and Add Products Section -->
+  <div class="bg-white rounded-lg shadow p-4">
+    <h2 class="text-xl font-semibold mb-4">Search Products</h2>
+    <div class="flex gap-4 mb-4">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        class="border rounded-lg p-2 flex-1"
+        placeholder="Search for products"
+      />
+      <button
+        (click)="searchProducts()"
+        class="bg-purple-500 text-white py-2 px-4 rounded-lg hover:bg-purple-600"
+      >
+        Search
+      </button>
+    </div>
+
+    <div *ngIf="searchResults.length > 0">
+      <h3 class="text-lg font-semibold mb-2">Search Results</h3>
+      <div
+        *ngFor="let product of searchResults"
+        class="flex items-center justify-between bg-gray-50 p-3 mb-2 rounded-lg shadow"
+      >
+        <div>
+          <p class="font-semibold">{{ product.product_name }}</p>
+          <p class="text-sm text-gray-600">{{ product.id || product.code }}</p>
+        </div>
+        <button
+          (click)="addToCart(product)"
+          class="bg-indigo-500 text-white py-1 px-3 rounded-lg hover:bg-indigo-600"
+        >
+          Add to Cart
         </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </div>
+</div>
