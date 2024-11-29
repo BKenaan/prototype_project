@@ -1,4 +1,4 @@
-package com;
+package test.java;
 import java.util.*;
 
 
