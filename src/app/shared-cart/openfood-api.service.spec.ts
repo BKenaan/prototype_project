@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { OpenfoodApiService } from './openfood-api.service';
 
 describe('OpenfoodApiService', () => {
-  let service: OpenfoodApiService;
+  let service: OpenFoodApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(OpenfoodApiService);
+    service = TestBed.inject(OpenFoodApiService);
   });
 
   it('should be created', () => {
