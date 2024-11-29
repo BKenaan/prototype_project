@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { OpenfoodApiService } from './openfood-api.service';
+import { OpenFoodApiService } from './openfood-api.service';
 
-describe('OpenfoodApiService', () => {
-  let service: OpenfoodApiService;
+describe('OpenFoodApiService', () => {
+  let service: OpenFoodApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
