@@ -12,12 +12,12 @@ import { OpenFoodApiService } from '../openfood-api.service';
 })
 export class CartComponent {
   cart: any = null;
+  cartItems: { name: string; quantity: number; price?: number }[] = [];
   cartIdInput: string = '';
   pinInput: string = '';
   participantId: string = '';
   searchQuery: string = '';
   searchResults: any[] = [];
-  cartItems: { name: string; quantity: number }[] = [];
   
 
   constructor(private openFoodApi: OpenFoodApiService) {}
