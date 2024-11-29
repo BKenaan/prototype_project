@@ -17,8 +17,14 @@ export class CartComponent {
   participantId: string = '';
   searchQuery: string = '';
   searchResults: any[] = [];
+  cartItems: { name: string; quantity: number }[] = [];
+  
 
   constructor(private openFoodApi: OpenFoodApiService) {}
+
+  removeItem(index: number): void {
+        this.cartItems.splice(index, 1);
+  }
 
   createCart(hostId: string) {
     this.cart = {
