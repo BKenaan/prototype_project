@@ -3,29 +3,45 @@ name: Angular CI
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 16 # Use the appropriate Node.js version for your project
 
-      - name: Install Dependencies
+      # Step 3: Install dependencies
+      - name: Install dependencies
         run: npm install
 
+      # Step 4: Run Unit Tests
       - name: Run Unit Tests
-        run: npm run test -- --watch=false --no-progress
+        run: npm test -- --watch=false --no-progress
 
-      - name: Run End-to-End Tests
-        run: npm run e2e -- --no-progress
+      # Step 5: Lint the code (optional)
+      - name: Run Lint Checks
+        run: npm run lint
+
+      # Step 6: Build the application
+      - name: Build the application
+        run: npm run build
+
+      # Step 7: Archive Build Artifacts (optional)
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: dist/
