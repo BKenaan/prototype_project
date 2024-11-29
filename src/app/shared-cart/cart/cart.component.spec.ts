@@ -2,16 +2,24 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartComponent } from './cart.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { OpenFoodApiService } from '../openfood-api.service';
+import { of } from 'rxjs';
 
 describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
+  let openFoodApiService: jasmine.SpyObj<OpenFoodApiService>;
 
   beforeEach(async () => {
+    const openFoodApiSpy = jasmine.createSpyObj('OpenFoodApiService', ['searchProducts']);
+
     await TestBed.configureTestingModule({
       declarations: [CartComponent],
-      imports: [FormsModule, CommonModule], // Import necessary modules
+      imports: [FormsModule, CommonModule],
+      providers: [{ provide: OpenFoodApiService, useValue: openFoodApiSpy }],
     }).compileComponents();
+
+    openFoodApiService = TestBed.inject(OpenFoodApiService) as jasmine.SpyObj<OpenFoodApiService>;
   });
 
   beforeEach(() => {
