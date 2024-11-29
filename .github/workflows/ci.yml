@@ -1,31 +1,65 @@
-name: Angular CI
+name: Java CI
 
 on:
   push:
     branches:
-      - master
+      - main
+      - addTest
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      # Step 2: Set up JDK
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
         with:
-          node-version: '18'
+          java-version: '11'
+          distribution: 'temurin'
 
-      - name: Install Dependencies
-        run: npm install
+      # Step 3: Cache Gradle dependencies
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
-      - name: Run Unit Tests
-        run: npm run test -- --watch=false --no-progress
+      # Step 4: Build the project
+      - name: Build with Gradle
+        run: ./gradlew build
 
-      - name: Run End-to-End Tests
-        run: npm run e2e -- --no-progress
+      # Step 5: Run unit tests
+      - name: Run unit tests
+        run: ./gradlew test
+
+      # Step 6: Run linting (optional)
+      - name: Run lint checks
+        run: ./gradlew check
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up deployment environment
+      - name: Set up environment
+        run: echo "Setting up deployment environment"
+
+      # Step 3: Deploy the application
+      - name: Deploy to Production
+        run: ./deploy.sh
