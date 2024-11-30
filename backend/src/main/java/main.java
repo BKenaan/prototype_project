@@ -1,12 +1,10 @@
-
-
-import java.util.*;
-import DataModel.*;
-
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        
         Helpers helpers = new Helpers();
 
         // Create a new shared cart
@@ -18,10 +16,9 @@ public class Main {
         System.out.println("Cart created with ID: " + cartId);
 
         // Add hardcoded items to the cart
-        Item milk = new Item("item1", "Milk", "user1", 2, 1.5); // 2 units of Milk at $1.5 each by user1
-        Item bread = new Item("item2", "Bread", "user2", 1, 0.8); // 1 unit of Bread at $0.8 by user2
-        Item eggs = new Item("item3", "Eggs", "user3", 12, 0.1); // 12 units of Eggs at $0.1 each by user3
-
+        DataModel.Item milk = new DataModel.Item("item1", "Milk", "user1", 2, 1.5); // 2 units of Milk at $1.5 each by user1
+        DataModel.Item bread = new DataModel.Item("item2", "Bread", "user2", 1, 0.8); // 1 unit of Bread at $0.8 by user2
+        DataModel.Item eggs = new DataModel.Item("item3", "Eggs", "user3", 12, 0.1); // 12 units of Eggs at $0.1 each by user3
 
         helpers.addItemToCart(cartId, "user1", milk);
         helpers.addItemToCart(cartId, "user2", bread);
@@ -29,8 +26,8 @@ public class Main {
 
         // View cart details
         System.out.println("Cart Details:");
-        List<Item> cartItems = helpers.viewCartDetails(cartId);
-        for (Item item : cartItems) {
+        List<DataModel.Item> cartItems = helpers.viewCartDetails(cartId);
+        for (DataModel.Item item : cartItems) {
             System.out.println(item.getProductId() + " - " + item.getQuantity() + " units @ $" + item.getPrice() + " each");
         }
 
@@ -52,7 +49,7 @@ public class Main {
 
         // Get savings details
         double individualDeliveryFee = 3.0;
-        SavingsSummary savings = helpers.getSavingsDetails(cartId, individualDeliveryFee, groupDeliveryFee);
+        DataModel.SavingsSummary savings = helpers.getSavingsDetails(cartId, individualDeliveryFee, groupDeliveryFee);
         System.out.println("Savings Summary:");
         System.out.println("Total Savings: $" + savings.getTotalSavings());
         System.out.println("Individual Savings: $" + savings.getIndividualSavings());
@@ -68,4 +65,3 @@ public class Main {
         helpers.checkAndAutoFinalizeOrder(cartId, currentTime);
     }
 }
-
