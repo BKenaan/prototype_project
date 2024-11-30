@@ -1,14 +1,18 @@
-public class dataModel {
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+
+public class DataModel {
 
     // Cart Model
-public static class Cart {
-    private String cartId;
-    private String hostId;
-    private List<String> participants; 
-    private List<Item> items;
-    private String status; // e.g., "Open", "Finalized"
-    private double groupDeliveryFee;
-    private Date deadline;
+    public static class Cart {
+        private String cartId;
+        private String hostId;
+        private List<String> participants; 
+        private List<Item> items;
+        private String status; // e.g., "Open", "Finalized"
+        private double groupDeliveryFee;
+        private Date deadline;
 
     // Constructor
     public  Cart(String cartId, String hostId, List<String> participants, List<Item> items, String status, double groupDeliveryFee, Date deadline) {
@@ -110,28 +114,18 @@ public static class Cart {
 
 // Item Model
 public static class Item {
-    private String itemId;
     private String productId;
+    private String name;
     private String userId;
     private int quantity;
     private double price;
 
-    // Constructor
-    public Item(String itemId, String productId, String userId, int quantity, double price) {
-        this.itemId = itemId;
+    public Item(String productId, String name, String userId, int quantity, double price) {
         this.productId = productId;
+        this.name = name;
         this.userId = userId;
         this.quantity = quantity;
         this.price = price;
-    }
-
-    // Getters and Setters
-    public String getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
     }
 
     public String getProductId() {
@@ -140,6 +134,14 @@ public static class Item {
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUserId() {

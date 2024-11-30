@@ -5,182 +5,54 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import DataModel.*;
-
-
 public class Helpers {
-
-    private List<Cart> carts = new ArrayList<>();
+    private List<DataModel.Cart> carts = new ArrayList<>();
 
     public String createSharedCart(String hostId, List<String> participants, Date deadline) {
-        // Generate a unique cart ID
-        String cartId = UUID.randomUUID().toString();
-        Cart cart = new Cart(cartId, hostId, participants, new ArrayList<>(), "Open", 5.0, deadline);
+        String cartId = "cart" + (carts.size() + 1);
+        DataModel.Cart cart = new DataModel.Cart(cartId, hostId, participants, new ArrayList<>(), "Open", 5.0, deadline);
         carts.add(cart);
         return cartId;
     }
 
-    public void addItemToCart(String cartId, String userId, Item item) {
-        Cart cart = null;
-        for (Cart c : carts) {
+    public void addItemToCart(String cartId, String userId, DataModel.Item item) {
+        DataModel.Cart cart = null;
+        for (DataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
             }
         }
-
-        if (cart == null) {
-            throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
+        if (cart != null) {
+            cart.getItems().add(item);
         }
-
-        item.setUserId(userId);
-    
-        
-        cart.getItems().add(item);
-    
-        System.out.println("Item added to cart: " + item.getProductId() + " by user " + userId);
     }
-    
-    public void removeItemFromCart(String cartId, String itemId, String userId) {
 
-        Cart cart = null;
-        for (Cart c : carts) {
+    public List<DataModel.Item> viewCartDetails(String cartId) {
+        DataModel.Cart cart = null;
+        for (DataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
             }
         }
-    
-        
-        if (cart == null) {
-            throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
-        }
-    
-        Item itemToRemove = null;
-        for (Item item : cart.getItems()) {
-            if (item.getItemId().equals(itemId)) {
-                
-                if (!item.getUserId().equals(userId)) {
-                    throw new IllegalArgumentException("User " + userId + " is not authorized to remove this item.");
-                }
-                itemToRemove = item;
-                break;
-            }
-        }
-    
-
-        if (itemToRemove == null) {
-            throw new IllegalArgumentException("Item with ID " + itemId + " does not exist in the cart.");
-        }
-    
-        cart.getItems().remove(itemToRemove);
-    
-        System.out.println("Item removed from cart: " + itemId + " by user " + userId);
-    }
-    
-    public List<Item> viewCartDetails(String cartId) {
-        Cart cart = null;
-        for (Cart c : carts) {
-            if (c.getCartId().equals(cartId)) {
-                cart = c;
-                break;
-            }
-        }
-    
-        if (cart == null) {
-            throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
-        }
-    
-        return cart.viewItems();
+        return cart != null ? cart.getItems() : new ArrayList<>();
     }
 
-
-    public void finalizeOrder(String cartId) {
-        Cart cart = null;
-        for (Cart c : carts) {
-            if (c.getCartId().equals(cartId)) {
-                cart = c;
-                break;
-            }
-        }
-    
-        if (cart == null) {
-            throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
-        }
-    
-        if (cart.getStatus().equalsIgnoreCase("Finalized")) {
-            System.out.println("The cart with ID " + cartId + " is already finalized.");
-            return;
-        }
-    
-        cart.setStatus("Finalized");
-    
-        System.out.println("Order for cart ID " + cartId + " has been finalized.");
-    }
-    
-
-    public String getOrderStatus(String cartId) {
-
-        Cart cart = null;
-        for (Cart c : carts) {
-            if (c.getCartId().equals(cartId)) {
-                cart = c;
-                break;
-            }
-        }
-    
-        if (cart == null) {
-            throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
-        }
-    
-        return cart.getStatus();
-    }
-
-    public void checkAndAutoFinalizeOrder(String cartId, Date currentTime) {
-
-        Cart cart = null;
-        for (Cart c : carts) {
-            if (c.getCartId().equals(cartId)) {
-                cart = c;
-                break;
-            }
-        }
-    
-        if (cart == null) {
-            throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
-        }
-    
-        if (cart.getStatus().equalsIgnoreCase("Finalized")) {
-            System.out.println("The cart with ID " + cartId + " is already finalized.");
-            return;
-        }
-    
-        if (currentTime.after(cart.getDeadline())) {
-            cart.setStatus("Finalized");
-            System.out.println("Order for cart ID " + cartId + " has been automatically finalized.");
-        } else {
-            System.out.println("Cart with ID " + cartId + " is still open. Deadline not reached.");
-        }
-    }
-    
     public double calculateTotalCost(String cartId) {
-        Cart cart = null;
-        for (Cart c : carts) {
+        DataModel.Cart cart = null;
+        for (DataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
             }
         }
-    
-        if (cart == null) {
-            throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
+        double totalCost = 0.0;
+        if (cart != null) {
+            for (DataModel.Item item : cart.getItems()) {
+                totalCost += item.getQuantity() * item.getPrice();
+            }
         }
-    
-        double totalCost = 0;
-        for (Item item : cart.getItems()) {
-            totalCost += item.getQuantity() * item.getPrice();
-        }
-    
         return totalCost;
     }
     
