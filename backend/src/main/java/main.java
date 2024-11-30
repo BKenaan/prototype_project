@@ -1,8 +1,8 @@
-package com;
+
 
 import java.util.*;
-import com.datamodel.Item;
-import com.datamodel.SavingsSummary;
+import DataModel.*;
+
 
 public class Main {
     public static void main(String[] args) {

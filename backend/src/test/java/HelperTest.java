@@ -1,8 +1,6 @@
 package com;
 
-import com.datamodel.Cart;
-import com.datamodel.Item;
-import com.datamodel.SavingsSummary;
+import cdatamodel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,4 @@
-package com;
-import java.util.*;
-
-
-public class datamodel {
+public class dataModel {
 
     // Cart Model
 public static class Cart {
