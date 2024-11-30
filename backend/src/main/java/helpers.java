@@ -57,12 +57,12 @@ public class Helpers {
     }
     
     public Map<String, Double> calculateIndividualCosts(String cartId) {
-      Cart cart = null;
-      for (Cart c : carts) {
-          if (c.getCartId().equals(cartId)) {
-              cart = c;
-              break;
-          }
+        DataModel.Cart cart = null;
+        for (DataModel.Cart c : carts) {
+            if (c.getCartId().equals(cartId)) {
+                cart = c;
+                break;
+            }
       }
 
       if (cart == null) {
@@ -107,7 +107,7 @@ public class Helpers {
         return savings;
     }
     
-    public SavingsSummary getSavingsDetails(String cartId, double individualDeliveryFee, double groupDeliveryFee) {
+    public  DataModel.SavingsSummary getSavingsDetails(String cartId, double individualDeliveryFee, double groupDeliveryFee) {
         Cart cart = null;
         for (Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
@@ -132,13 +132,13 @@ public class Helpers {
     }
     
     // Product Management
-    public List<Product> fetchProductsFromApi(String query) {
+    public List<DataModel.Product> fetchProductsFromApi(String query) {
             return null; }
 
     public void updateProductPrices() { }
 
     // Utilities
-    public List<Product> parseApiResponse(String response) {
+    public List<DataModel.Product> parseApiResponse(String response) {
             return null; }
 
     // Validation
