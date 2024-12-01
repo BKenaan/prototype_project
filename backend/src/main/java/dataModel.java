@@ -97,7 +97,7 @@ public class DataModel {
         }
 
         for (Item item : this.items) {
-            if (item.getItemId().equals(itemId) && item.getUserId().equals(userId)) {
+            if (item.getProductId().equals(itemId) && item.getUserId().equals(userId)) {
                 this.items.remove(item);
                 return true; 
             }
@@ -131,6 +131,7 @@ public static class Item {
     public String getProductId() {
         return productId;
     }
+
 
     public void setProductId(String productId) {
         this.productId = productId;
