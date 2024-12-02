@@ -1,22 +1,28 @@
-<!-- Header -->
-<header class="bg-blue-600 text-orange-500 py-4 shadow">
-  <div class="bg-gray-800 flex items-center` justify-between px-4">
-    <h1 class="text-2xl font-bold">Prototype Project</h1>
-    <nav class="space-x-4">
-      <a routerLink="/" class="hover:text-gray-200">Home</a>
-      <a routerLink="/savings" class="hover:text-gray-200">Savings</a>
-      <a routerLink="/cart" class="hover:text-gray-200">Cart</a>
-      <a routerLink="/dashboard" class="hover:text-gray-200">Dashboard</a>
-    </nav>
-  </div>
-</header>
+<ng-container *ngIf="!isSignupPage && !isLoginPage">
+  <!-- Header -->
+  <header class="bg-blue-600 text-orange-500 py-4 shadow">
+    <div class="bg-gray-800 flex items-center justify-between px-4">
+      <h1 class="text-2xl font-bold">Prototype Project</h1>
+      <nav class="space-x-4">
+        <a routerLink="/" class="hover:text-gray-200">Home</a>
+        <a routerLink="/savings" class="hover:text-gray-200">Savings</a>
+        <a routerLink="/cart" class="hover:text-gray-200">Cart</a>
+        <a routerLink="/dashboard" class="hover:text-gray-200">Dashboard</a>
+        <a routerLink="/signup" class="hover:text-gray-200">Sign Up</a>
+        <a routerLink="/login" class="hover:text-gray-200">Login</a>
+      </nav>
+    </div>
+  </header>
+</ng-container>
 
 <!-- Main Content -->
 <main>
   <router-outlet></router-outlet>
 </main>
 
-<!-- Footer -->
-<footer class="bg-gray-800 text-white py-4 text-center">
-  © 2024 Prototype Project. All Rights Reserved.
-</footer>
+<ng-container *ngIf="!isSignupPage && !isLoginPage">
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 text-center">
+    © 2024 Prototype Project. All Rights Reserved.
+  </footer>
+</ng-container>

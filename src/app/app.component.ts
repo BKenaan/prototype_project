@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // Explicitly import from @angular/router
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,5 +19,15 @@ export class AppComponent {
     { category: 'Education', amount: 300 },
     { category: 'Entertainment', amount: 150 },
   ];
+  isSignupPage: boolean = false;
+  isLoginPage: boolean = false;
+
+  constructor(private router: Router){
+    this.router.events.subscribe(() => {
+      const currentRoute = this.router.url;
+      this.isSignupPage = currentRoute === '/signup';
+      this.isLoginPage = currentRoute === '/login';
+    });
+  }
   announcement: any;
 }
