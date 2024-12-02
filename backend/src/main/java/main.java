@@ -57,11 +57,11 @@ public class Main {
         System.out.println("Number of Participants: " + savings.getNumberOfParticipants());
 
         // Finalize the cart manually
-        Helpers.finalizeOrder(cartId);
-        System.out.println("Cart finalized. Current Status: " + Helpers.getOrderStatus(cartId));
+        helpers.finalizeOrder(cartId);
+        System.out.println("Cart finalized. Current Status: " + helpers.getOrderStatus(cartId));
 
         // Check auto-finalization (simulate deadline passing)
         Date currentTime = new Date(System.currentTimeMillis() + 2 * 3600 * 1000); // 2 hours later
-        Helpers.checkAndAutoFinalizeOrder(cartId, currentTime);
+        helpers.checkAndAutoFinalizeOrder(cartId, currentTime);
     }
 }
