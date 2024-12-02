@@ -3,7 +3,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+
+
 
 public class Helpers {
     private List<DataModel.Cart> carts = new ArrayList<>();
@@ -72,7 +73,7 @@ public class Helpers {
       // Initialize a map to store individual costs
       Map<String, Double> individualCosts = new HashMap<>();
 
-      for (Item item : cart.getItems()) {
+      for (DataModel.Item item : cart.getItems()) {
           String userId = item.getUserId();
           double itemCost = item.getQuantity() * item.getPrice();
           individualCosts.put(userId, individualCosts.getOrDefault(userId, 0.0) + itemCost);
@@ -108,8 +109,8 @@ public class Helpers {
     }
     
     public  DataModel.SavingsSummary getSavingsDetails(String cartId, double individualDeliveryFee, double groupDeliveryFee) {
-        Cart cart = null;
-        for (Cart c : carts) {
+        DataModel.Cart cart = null;
+        for (DataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
@@ -128,8 +129,85 @@ public class Helpers {
     
         double individualSavings = (totalSavings / numberOfParticipants);
     
-        return new SavingsSummary(totalSavings, individualSavings, groupDeliveryFee, numberOfParticipants);
+        return new DataModel.SavingsSummary(totalSavings, individualSavings, groupDeliveryFee, numberOfParticipants);
     }
+
+    
+        public void finalizeOrder(String cartId) {
+            DataModel.Cart cart = null;
+            for (DataModel.Cart c : carts) {
+                if (c.getCartId().equals(cartId)) {
+                    cart = c;
+                    break;
+                }
+            }
+        
+            if (cart == null) {
+                throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
+            }
+        
+            // Update the cart status to "Finalized"
+            cart.setStatus("Finalized");
+        
+            // Perform any additional actions needed to finalize the order
+            // For example, notify participants, process payments, etc.
+            notifyParticipants(cart);
+            processPayments(cart);
+        
+            System.out.println("Order for cart " + cartId + " has been finalized.");
+        }
+
+        public String getOrderStatus(String cartId) {
+            DataModel.Cart cart = null;
+            for (DataModel.Cart c : carts) {
+                if (c.getCartId().equals(cartId)) {
+                    cart = c;
+                    break;
+                }
+            }
+        
+            if (cart == null) {
+                throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
+            }
+        
+            return cart.getStatus();
+        }
+
+        public void checkAndAutoFinalizeOrder(String cartId, Date currentTime) {
+            DataModel.Cart cart = null;
+            for (DataModel.Cart c : carts) {
+                if (c.getCartId().equals(cartId)) {
+                    cart = c;
+                    break;
+                }
+            }
+        
+            if (cart == null) {
+                throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
+            }
+        
+            // Check if the current time is past the deadline
+            if (currentTime.after(cart.getDeadline())) {
+                // Finalize the order
+                finalizeOrder(cartId);
+            }
+        }
+
+
+        
+        private void notifyParticipants(DataModel.Cart cart) {
+            // Implementation for notifying participants
+            for (String participant : cart.getParticipants()) {
+                System.out.println("Notifying participant: " + participant);
+            }
+        }
+        
+        private void processPayments(DataModel.Cart cart) {
+            // Implementation for processing payments
+            System.out.println("Processing payments for cart: " + cart.getCartId());
+        }
+
+    
     
     // Product Management
     public List<DataModel.Product> fetchProductsFromApi(String query) {

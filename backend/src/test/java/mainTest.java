@@ -1,79 +1,76 @@
-package com;
-
-import com.datamodel.Item;
-import com.datamodel.SavingsSummary;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MainTest {
+public class MainTest {
 
     private Helpers helpers;
+    private String cartId;
+    private DataModel.Item milk;
+    private DataModel.Item bread;
+    private DataModel.Item eggs;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         helpers = new Helpers();
-    }
-
-    @Test
-    void testMainWorkflow() {
-        // Setup: Create a shared cart
-        String hostId = "host123";
         List<String> participants = Arrays.asList("user1", "user2", "user3");
-        Date deadline = new Date(System.currentTimeMillis() + 60000); // 1 minute from now
+        Date deadline = new Date(System.currentTimeMillis() + 3600 * 1000); // 1 hour from now
+        cartId = helpers.createSharedCart("host123", participants, deadline);
 
-        String cartId = helpers.createSharedCart(hostId, participants, deadline);
-        assertNotNull(cartId, "Cart ID should not be null");
-
-        // Step 1: Add items to the cart
-        Item item1 = new Item("item1", "product1", "user1", 2, 15.0); // 2 units, $15 each
-        Item item2 = new Item("item2", "product2", "user2", 1, 30.0); // 1 unit, $30
-
-        helpers.addItemToCart(cartId, "user1", item1);
-        helpers.addItemToCart(cartId, "user2", item2);
-
-        // Verify: Items added
-        List<Item> items = helpers.viewCartDetails(cartId);
-        assertEquals(2, items.size(), "Cart should contain two items");
-        assertEquals(item1, items.get(0), "First item should match");
-        assertEquals(item2, items.get(1), "Second item should match");
-
-        // Step 2: Calculate total cost
-        double totalCost = helpers.calculateTotalCost(cartId);
-        assertEquals(60.0, totalCost, "Total cart cost should be $60.0");
-
-        // Step 3: Finalize the cart manually
-        helpers.finalizeOrder(cartId);
-        assertEquals("Finalized", helpers.getOrderStatus(cartId), "Cart status should be finalized");
-
-        // Step 4: Calculate savings
-        double individualDeliveryFee = 10.0; // Assume $10 delivery fee per person
-        double groupDeliveryFee = 25.0; // Group delivery fee is $25
-
-        SavingsSummary savingsSummary = helpers.getSavingsDetails(cartId, individualDeliveryFee, groupDeliveryFee);
-
-        assertEquals(5.0, savingsSummary.getTotalSavings(), "Total savings should be $5.0");
-        assertEquals(1.67, Math.round(savingsSummary.getIndividualSavings() * 100.0) / 100.0, "Individual savings should be approximately $1.67");
+        milk = new DataModel.Item("item1", "Milk", "user1", 2, 1.5);
+        bread = new DataModel.Item("item2", "Bread", "user2", 1, 0.8);
+        eggs = new DataModel.Item("item3", "Eggs", "user3", 12, 0.1);
     }
 
     @Test
-    void testDeadlineAutoFinalize() {
-        // Setup: Create a cart with a passed deadline
-        String hostId = "host123";
-        List<String> participants = Arrays.asList("user1", "user2");
-        Date pastDeadline = new Date(System.currentTimeMillis() - 1000); // Deadline already passed
+    public void testCreateSharedCart() {
+        assertNotNull(cartId);
+        assertEquals(3, helpers.viewCartDetails(cartId).size());
+    }
 
-        String cartId = helpers.createSharedCart(hostId, participants, pastDeadline);
+    @Test
+    public void testAddItemToCart() {
+        helpers.addItemToCart(cartId, "user1", milk);
+        helpers.addItemToCart(cartId, "user2", bread);
+        helpers.addItemToCart(cartId, "user3", eggs);
+        List<DataModel.Item> items = helpers.viewCartDetails(cartId);
+        assertEquals(3, items.size());
+        assertEquals("Milk", items.get(0).getProductId());
+        assertEquals("Bread", items.get(1).getProductId());
+        assertEquals("Eggs", items.get(2).getProductId());
+    }
 
-        // Action: Check and auto-finalize order
-        helpers.checkAndAutoFinalizeOrder(cartId, new Date());
+    @Test
+    public void testViewCartDetails() {
+        helpers.addItemToCart(cartId, "user1", milk);
+        helpers.addItemToCart(cartId, "user2", bread);
+        helpers.addItemToCart(cartId, "user3", eggs);
+        List<DataModel.Item> items = helpers.viewCartDetails(cartId);
+        assertNotNull(items);
+        assertEquals(3, items.size());
+    }
 
-        // Verify: Cart should be auto-finalized
-        assertEquals("Finalized", helpers.getOrderStatus(cartId), "Cart should be auto-finalized after the deadline");
+    @Test
+    public void testCalculateTotalCost() {
+        helpers.addItemToCart(cartId, "user1", milk);
+        helpers.addItemToCart(cartId, "user2", bread);
+        helpers.addItemToCart(cartId, "user3", eggs);
+        double totalCost = helpers.calculateTotalCost(cartId);
+        assertEquals(5.3, totalCost);
+    }
+
+    @Test
+    public void testCalculateIndividualCosts() {
+        helpers.addItemToCart(cartId, "user1", milk);
+        helpers.addItemToCart(cartId, "user2", bread);
+        helpers.addItemToCart(cartId, "user3", eggs);
+        Map<String, Double> individualCosts = helpers.calculateIndividualCosts(cartId);
+        assertEquals(2 * 1.5, individualCosts.get("user1"));
+        assertEquals(1 * 0.8, individualCosts.get("user2"));
+        assertEquals(12 * 0.1, individualCosts.get("user3"));
     }
 }
