@@ -2,22 +2,6 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
 then i upgraded it version 19.0
-
-### Prerequisetes
--Docker installed and running on ur system
--Port 4300 is vacant on ur machine
-### How to Run the Project with Docker
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd prototype_project
-2. Build Docker image:
-  docker build -t angular-app .
-3. Run docker container
-  docker run -p 4300:4200 angular-app
-4. Navigate to
-  http://localhost:4300
   
 ## Development server
 
