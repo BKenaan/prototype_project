@@ -7,7 +7,7 @@ describe('OpenFoodApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(OpenfoodApiService);
+    service = TestBed.inject(OpenFoodApiService);
   });
 
   it('should be created', () => {
