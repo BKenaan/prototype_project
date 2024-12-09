@@ -132,7 +132,6 @@ public static class Item {
         return productId;
     }
 
-
     public void setProductId(String productId) {
         this.productId = productId;
     }

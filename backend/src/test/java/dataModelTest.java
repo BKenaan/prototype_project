@@ -8,14 +8,14 @@ import java.util.List;
 
 public class DataModelTest {
 
-    private DataModel.Cart cart;
-    private DataModel.Item item;
+    private dataModel.Cart cart;
+    private dataModel.Item item;
 
     @BeforeEach
     public void setUp() {
         List<String> participants = Arrays.asList("user1", "user2");
-        cart = new DataModel.Cart("cart1", "host1", participants, new ArrayList<>(), "Open", 5.0, new Date());
-        item = new DataModel.Item("1234we", "product1", "2540", 10, 5.0);
+        cart = new dataModel.Cart("cart1", "host1", participants, new ArrayList<>(), "Open", 5.0, new Date());
+        item = new dataModel.Item("1234we", "product1", "2540", 10, 5.0);
     }
     
 

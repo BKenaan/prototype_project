@@ -16,9 +16,9 @@ public class Main {
         System.out.println("Cart created with ID: " + cartId);
 
         // Add hardcoded items to the cart
-        DataModel.Item milk = new DataModel.Item("item1", "Milk", "user1", 2, 1.5); // 2 units of Milk at $1.5 each by user1
-        DataModel.Item bread = new DataModel.Item("item2", "Bread", "user2", 1, 0.8); // 1 unit of Bread at $0.8 by user2
-        DataModel.Item eggs = new DataModel.Item("item3", "Eggs", "user3", 12, 0.1); // 12 units of Eggs at $0.1 each by user3
+        dataModel.Item milk = new dataModel.Item("item1", "Milk", "user1", 2, 1.5); // 2 units of Milk at $1.5 each by user1
+        dataModel.Item bread = new dataModel.Item("item2", "Bread", "user2", 1, 0.8); // 1 unit of Bread at $0.8 by user2
+        dataModel.Item eggs = new dataModel.Item("item3", "Eggs", "user3", 12, 0.1); // 12 units of Eggs at $0.1 each by user3
 
         helpers.addItemToCart(cartId, "user1", milk);
         helpers.addItemToCart(cartId, "user2", bread);
@@ -26,8 +26,8 @@ public class Main {
 
         // View cart details
         System.out.println("Cart Details:");
-        List<DataModel.Item> cartItems = helpers.viewCartDetails(cartId);
-        for (DataModel.Item item : cartItems) {
+        List<dataModel.Item> cartItems = helpers.viewCartDetails(cartId);
+        for (dataModel.Item item : cartItems) {
             System.out.println(item.getProductId() + " - " + item.getQuantity() + " units @ $" + item.getPrice() + " each");
         }
 
@@ -49,7 +49,7 @@ public class Main {
 
         // Get savings details
         double individualDeliveryFee = 3.0;
-        DataModel.SavingsSummary savings = helpers.getSavingsDetails(cartId, individualDeliveryFee, groupDeliveryFee);
+        dataModel.SavingsSummary savings = helpers.getSavingsDetails(cartId, individualDeliveryFee, groupDeliveryFee);
         System.out.println("Savings Summary:");
         System.out.println("Total Savings: $" + savings.getTotalSavings());
         System.out.println("Individual Savings: $" + savings.getIndividualSavings());

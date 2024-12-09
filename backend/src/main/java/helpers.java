@@ -7,18 +7,18 @@ import java.util.Map;
 
 
 public class Helpers {
-    private List<DataModel.Cart> carts = new ArrayList<>();
+    private List<dataModel.Cart> carts = new ArrayList<>();
 
     public String createSharedCart(String hostId, List<String> participants, Date deadline) {
         String cartId = "cart" + (carts.size() + 1);
-        DataModel.Cart cart = new DataModel.Cart(cartId, hostId, participants, new ArrayList<>(), "Open", 5.0, deadline);
+        dataModel.Cart cart = new dataModel.Cart(cartId, hostId, participants, new ArrayList<>(), "Open", 5.0, deadline);
         carts.add(cart);
         return cartId;
     }
 
-    public void addItemToCart(String cartId, String userId, DataModel.Item item) {
-        DataModel.Cart cart = null;
-        for (DataModel.Cart c : carts) {
+    public void addItemToCart(String cartId, String userId, dataModel.Item item) {
+        dataModel.Cart cart = null;
+        for (dataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
@@ -29,9 +29,9 @@ public class Helpers {
         }
     }
 
-    public List<DataModel.Item> viewCartDetails(String cartId) {
-        DataModel.Cart cart = null;
-        for (DataModel.Cart c : carts) {
+    public List<dataModel.Item> viewCartDetails(String cartId) {
+        dataModel.Cart cart = null;
+        for (dataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
@@ -41,8 +41,8 @@ public class Helpers {
     }
 
     public double calculateTotalCost(String cartId) {
-        DataModel.Cart cart = null;
-        for (DataModel.Cart c : carts) {
+        dataModel.Cart cart = null;
+        for (dataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
@@ -50,7 +50,7 @@ public class Helpers {
         }
         double totalCost = 0.0;
         if (cart != null) {
-            for (DataModel.Item item : cart.getItems()) {
+            for (dataModel.Item item : cart.getItems()) {
                 totalCost += item.getQuantity() * item.getPrice();
             }
         }
@@ -58,8 +58,8 @@ public class Helpers {
     }
     
     public Map<String, Double> calculateIndividualCosts(String cartId) {
-        DataModel.Cart cart = null;
-        for (DataModel.Cart c : carts) {
+        dataModel.Cart cart = null;
+        for (dataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
@@ -73,7 +73,7 @@ public class Helpers {
       // Initialize a map to store individual costs
       Map<String, Double> individualCosts = new HashMap<>();
 
-      for (DataModel.Item item : cart.getItems()) {
+      for (dataModel.Item item : cart.getItems()) {
           String userId = item.getUserId();
           double itemCost = item.getQuantity() * item.getPrice();
           individualCosts.put(userId, individualCosts.getOrDefault(userId, 0.0) + itemCost);
@@ -108,9 +108,9 @@ public class Helpers {
         return savings;
     }
     
-    public  DataModel.SavingsSummary getSavingsDetails(String cartId, double individualDeliveryFee, double groupDeliveryFee) {
-        DataModel.Cart cart = null;
-        for (DataModel.Cart c : carts) {
+    public  dataModel.SavingsSummary getSavingsDetails(String cartId, double individualDeliveryFee, double groupDeliveryFee) {
+        dataModel.Cart cart = null;
+        for (dataModel.Cart c : carts) {
             if (c.getCartId().equals(cartId)) {
                 cart = c;
                 break;
@@ -129,13 +129,13 @@ public class Helpers {
     
         double individualSavings = (totalSavings / numberOfParticipants);
     
-        return new DataModel.SavingsSummary(totalSavings, individualSavings, groupDeliveryFee, numberOfParticipants);
+        return new dataModel.SavingsSummary(totalSavings, individualSavings, groupDeliveryFee, numberOfParticipants);
     }
 
     
         public void finalizeOrder(String cartId) {
-            DataModel.Cart cart = null;
-            for (DataModel.Cart c : carts) {
+            dataModel.Cart cart = null;
+            for (dataModel.Cart c : carts) {
                 if (c.getCartId().equals(cartId)) {
                     cart = c;
                     break;
@@ -158,8 +158,8 @@ public class Helpers {
         }
 
         public String getOrderStatus(String cartId) {
-            DataModel.Cart cart = null;
-            for (DataModel.Cart c : carts) {
+            dataModel.Cart cart = null;
+            for (dataModel.Cart c : carts) {
                 if (c.getCartId().equals(cartId)) {
                     cart = c;
                     break;
@@ -174,8 +174,8 @@ public class Helpers {
         }
 
         public void checkAndAutoFinalizeOrder(String cartId, Date currentTime) {
-            DataModel.Cart cart = null;
-            for (DataModel.Cart c : carts) {
+            dataModel.Cart cart = null;
+            for (dataModel.Cart c : carts) {
                 if (c.getCartId().equals(cartId)) {
                     cart = c;
                     break;
@@ -195,14 +195,14 @@ public class Helpers {
 
 
         
-        private void notifyParticipants(DataModel.Cart cart) {
+        private void notifyParticipants(dataModel.Cart cart) {
             // Implementation for notifying participants
             for (String participant : cart.getParticipants()) {
                 System.out.println("Notifying participant: " + participant);
             }
         }
         
-        private void processPayments(DataModel.Cart cart) {
+        private void processPayments(dataModel.Cart cart) {
             // Implementation for processing payments
             System.out.println("Processing payments for cart: " + cart.getCartId());
         }
@@ -210,13 +210,13 @@ public class Helpers {
     
     
     // Product Management
-    public List<DataModel.Product> fetchProductsFromApi(String query) {
+    public List<dataModel.Product> fetchProductsFromApi(String query) {
             return null; }
 
     public void updateProductPrices() { }
 
     // Utilities
-    public List<DataModel.Product> parseApiResponse(String response) {
+    public List<dataModel.Product> parseApiResponse(String response) {
             return null; }
 
     // Validation
