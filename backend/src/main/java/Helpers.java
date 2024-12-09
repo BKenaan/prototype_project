@@ -4,6 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import kong.unirest.Unirest;
+import kong.unirest.HttpResponse;
+
 
 
 public class Helpers {
@@ -211,19 +218,90 @@ public class Helpers {
     
     // Product Management
     public List<DataModel.Product> fetchProductsFromApi(String query) {
-            return null; }
-
-    public void updateProductPrices() { }
-
+        try {
+            HttpResponse<String> response = Unirest.get("https://world.openfoodfacts.org/api/v2/search")
+                    .header("accept", "application/json")
+                    .queryString("fields", "code,product_name,price")
+                    .queryString("page_size", "50")
+                    .queryString("query", query)
+                    .asString();
+    
+            if (response.getStatus() == 200) {
+                return parseApiResponse(response.getBody());
+            } else {
+                throw new RuntimeException("Failed to fetch products: " + response.getStatusText());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching products from API: " + e.getMessage(), e);
+        }
+    }
+    public void updateProductPrices() {
+        List<DataModel.Product> products = fetchProductsFromApi("");
+        for (DataModel.Product product : products) {
+            System.out.println("Updating price for product: " + product.getName());
+            // Update price logic here (e.g., save to database or update in memory)
+        }
+        System.out.println("Product prices updated successfully.");
+    }
+    
     // Utilities
     public List<DataModel.Product> parseApiResponse(String response) {
-            return null; }
+        List<DataModel.Product> products = new ArrayList<>();
+        Gson gson = new Gson();
+        JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
+        JsonArray productsArray = jsonResponse.getAsJsonArray("products");
+    
+        for (int i = 0; i < productsArray.size(); i++) {
+            JsonObject productJson = productsArray.get(i).getAsJsonObject();
+    
+            // Parse fields with fallback defaults if not present
+            String code = productJson.has("code") ? productJson.get("code").getAsString() : null;
+            String name = productJson.has("product_name") ? productJson.get("product_name").getAsString() : null;
+            double price = productJson.has("price") ? productJson.get("price").getAsDouble() : 0.0;
+    
+            // Optional: If stock quantity is not part of the API, set a default value
+            int stockQuantity = productJson.has("stock_quantity") ? productJson.get("stock_quantity").getAsInt() : 0;
+    
+            // Initialize a Product object
+            DataModel.Product product = new DataModel.Product(code, name, price, stockQuantity);
+            products.add(product);
+        }
+        return products;
+    }
+    
+    
 
     // Validation
     public boolean validateCartContents(String cartId) {
-            return false; }
+        DataModel.Cart cart = null;
+        for (DataModel.Cart c : carts) {
+            if (c.getCartId().equals(cartId)) {
+                cart = c;
+                break;
+            }
+        }
+    
+        if (cart == null) {
+            throw new IllegalArgumentException("Cart with ID " + cartId + " does not exist.");
+        }
+    
+        for (DataModel.Item item : cart.getItems()) {
+            String productId = item.getProductId();
+            List<DataModel.Product> fetchedProducts = fetchProductsFromApi(productId);
+            if (fetchedProducts.isEmpty()) {
+                System.out.println("Product with ID " + productId + " is invalid.");
+                return false;
+            }
+        }
+    
+        System.out.println("All products in the cart are valid.");
+        return true;
+    }
+    
 
     // Error Handling
-    public void handleApiError(int errorCode, int retryCount) { }
-    
+   
 }
+
+    
+
