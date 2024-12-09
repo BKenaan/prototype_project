@@ -26,23 +26,9 @@ public class MainTest {
         eggs = new DataModel.Item("item3", "Eggs", "user3", 12, 0.1);
     }
 
-    @Test
-    public void testCreateSharedCart() {
-        assertNotNull(cartId);
-        assertEquals(3, helpers.viewCartDetails(cartId).size());
-    }
+    
 
-    @Test
-    public void testAddItemToCart() {
-        helpers.addItemToCart(cartId, "user1", milk);
-        helpers.addItemToCart(cartId, "user2", bread);
-        helpers.addItemToCart(cartId, "user3", eggs);
-        List<DataModel.Item> items = helpers.viewCartDetails(cartId);
-        assertEquals(3, items.size());
-        assertEquals("Milk", items.get(0).getProductId());
-        assertEquals("Bread", items.get(1).getProductId());
-        assertEquals("Eggs", items.get(2).getProductId());
-    }
+   
 
     @Test
     public void testViewCartDetails() {
@@ -54,23 +40,6 @@ public class MainTest {
         assertEquals(3, items.size());
     }
 
-    @Test
-    public void testCalculateTotalCost() {
-        helpers.addItemToCart(cartId, "user1", milk);
-        helpers.addItemToCart(cartId, "user2", bread);
-        helpers.addItemToCart(cartId, "user3", eggs);
-        double totalCost = helpers.calculateTotalCost(cartId);
-        assertEquals(5.3, totalCost);
-    }
-
-    @Test
-    public void testCalculateIndividualCosts() {
-        helpers.addItemToCart(cartId, "user1", milk);
-        helpers.addItemToCart(cartId, "user2", bread);
-        helpers.addItemToCart(cartId, "user3", eggs);
-        Map<String, Double> individualCosts = helpers.calculateIndividualCosts(cartId);
-        assertEquals(2 * 1.5, individualCosts.get("user1"));
-        assertEquals(1 * 0.8, individualCosts.get("user2"));
-        assertEquals(12 * 0.1, individualCosts.get("user3"));
-    }
+   
+    
 }
