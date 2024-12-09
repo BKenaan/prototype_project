@@ -10,9 +10,9 @@ public class MainTest {
 
     private Helpers helpers;
     private String cartId;
-    private dataModel.Item milk;
-    private dataModel.Item bread;
-    private dataModel.Item eggs;
+    private DataModel.Item milk;
+    private DataModel.Item bread;
+    private DataModel.Item eggs;
 
     @BeforeEach
     public void setUp() {
@@ -21,9 +21,9 @@ public class MainTest {
         Date deadline = new Date(System.currentTimeMillis() + 3600 * 1000); // 1 hour from now
         cartId = helpers.createSharedCart("host123", participants, deadline);
 
-        milk = new dataModel.Item("item1", "Milk", "user1", 2, 1.5);
-        bread = new dataModel.Item("item2", "Bread", "user2", 1, 0.8);
-        eggs = new dataModel.Item("item3", "Eggs", "user3", 12, 0.1);
+        milk = new DataModel.Item("item1", "Milk", "user1", 2, 1.5);
+        bread = new DataModel.Item("item2", "Bread", "user2", 1, 0.8);
+        eggs = new DataModel.Item("item3", "Eggs", "user3", 12, 0.1);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class MainTest {
         helpers.addItemToCart(cartId, "user1", milk);
         helpers.addItemToCart(cartId, "user2", bread);
         helpers.addItemToCart(cartId, "user3", eggs);
-        List<dataModel.Item> items = helpers.viewCartDetails(cartId);
+        List<DataModel.Item> items = helpers.viewCartDetails(cartId);
         assertEquals(3, items.size());
         assertEquals("Milk", items.get(0).getProductId());
         assertEquals("Bread", items.get(1).getProductId());
@@ -49,7 +49,7 @@ public class MainTest {
         helpers.addItemToCart(cartId, "user1", milk);
         helpers.addItemToCart(cartId, "user2", bread);
         helpers.addItemToCart(cartId, "user3", eggs);
-        List<dataModel.Item> items = helpers.viewCartDetails(cartId);
+        List<DataModel.Item> items = helpers.viewCartDetails(cartId);
         assertNotNull(items);
         assertEquals(3, items.size());
     }
