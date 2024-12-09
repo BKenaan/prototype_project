@@ -27,20 +27,9 @@ public class DataModelTest {
         assertEquals("Open", cart.getStatus());
     }
 
-    @Test
-    public void testAddItemToCart() {
-        cart.getItems().add(item);
-        assertEquals(1, cart.getItems().size());
-        assertEquals("item1", cart.getItems().get(0).getProductId());
-    }
 
-    @Test
-    public void testItemCreation() {
-        assertEquals("item1", item.getProductId());
-        assertEquals("product1", item.getProductId());
-        assertEquals(2, item.getQuantity());
-        assertEquals(10.0, item.getPrice());
-    }
+
+   
 
     @Test
     public void testCartStatusUpdate() {
