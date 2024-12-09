@@ -10,13 +10,14 @@ import { SharedCartModule } from './shared-cart/shared-cart.module';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './user/login/login.component';
 
+
 @NgModule({
   declarations: [
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    SharedCartModule, // Include the SharedCartModule
+    SharedCartModule,
   ],
   bootstrap: [],
 })
