@@ -1,20 +1,19 @@
+package com.example;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
 public class DataModel {
 
-    // Cart Model
     public static class Cart {
         private String cartId;
         private String hostId;
         private List<String> participants; 
         private List<Item> items;
-        private String status; // e.g., "Open", "Finalized"
+        private String status; 
         private double groupDeliveryFee;
         private Date deadline;
 
-    // Constructor
     public  Cart(String cartId, String hostId, List<String> participants, List<Item> items, String status, double groupDeliveryFee, Date deadline) {
         this.cartId = cartId;
         this.hostId = hostId;
@@ -25,7 +24,6 @@ public class DataModel {
         this.deadline = deadline;
     }
 
-    // Getters and Setters
     public String getCartId() {
         return cartId;
     }
@@ -82,8 +80,6 @@ public class DataModel {
         this.deadline = deadline;
     }
 
-    // Additional Utility Methods
-
     public void addItem(Item item) {
         if (this.items == null) {
             this.items = new ArrayList<>();
@@ -112,7 +108,6 @@ public class DataModel {
 
 
 
-// Item Model
 public static class Item {
     private String productId;
     private String name;
@@ -169,14 +164,12 @@ public static class Item {
     }
 }
 
-// Product Model
 public static class Product {
     private String productId;
     private String name;
     private double price;
     private int stockQuantity;
 
-    // Constructor
     public Product(String productId, String name, double price, int stockQuantity) {
         this.productId = productId;
         this.name = name;
@@ -184,7 +177,6 @@ public static class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    // Getters and Setters
     public String getProductId() {
         return productId;
     }
@@ -218,14 +210,12 @@ public static class Product {
     }
 }
 
-// SavingsSummary Model
 public static class SavingsSummary {
     private double totalSavings;            
     private double individualSavings;       
     private double totalDeliveryFee;        
     private int numberOfParticipants;       
 
-    // Constructor
     public SavingsSummary(double totalSavings, double individualSavings, double totalDeliveryFee, int numberOfParticipants) {
         this.totalSavings = totalSavings;
         this.individualSavings = individualSavings;
@@ -233,7 +223,6 @@ public static class SavingsSummary {
         this.numberOfParticipants = numberOfParticipants;
     }
 
-    // Getters and Setters
     public double getTotalSavings() {
         return totalSavings;
     }
@@ -268,18 +257,15 @@ public static class SavingsSummary {
 }
 
 
-// Student Model
 public static class Student {
     private String studentId;
     private String password;
 
-    // Constructor
     public Student(String studentId, String password) {
         this.studentId = studentId;
         this.password = password;
     }
 
-    // Getters and Setters
     public String getStudentId() {
         return studentId;
     }

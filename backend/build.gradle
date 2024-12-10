@@ -3,25 +3,24 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.4'
     id 'io.spring.dependency-management' version '1.1.3'
-
 }
 
 repositories {
-    mavenCentral()
-    jcenter()
+    mavenCentral() 
 }
 
 dependencies {
-    implementation 'info.picocli:picocli:4.7.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web' 
+    implementation 'org.springframework.boot:spring-boot-starter'     
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' 
+    implementation 'info.picocli:picocli:4.7.6' 
+    implementation 'com.konghq:unirest-java:3.13.13' 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'com.konghq:unirest-java:3.13.13'
 }
 
 application {
-    mainClass = 'Program'
+    mainClass = 'com.example.Main'
 }
 
 tasks.named('test') {
