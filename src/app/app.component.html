@@ -1,16 +1,29 @@
 <ng-container *ngIf="!isSignupPage && !isLoginPage">
   <!-- Header -->
-  <header class="bg-blue-600 text-orange-500 py-4 shadow">
-    <div class="bg-gray-800 flex items-center justify-between px-4">
-      <h1 class="text-2xl font-bold">Prototype Project</h1>
-      <nav class="space-x-4">
-        <a routerLink="/" class="hover:text-gray-200">Home</a>
-        <a routerLink="/savings" class="hover:text-gray-200">Savings</a>
-        <a routerLink="/cart" class="hover:text-gray-200">Cart</a>
-        <a routerLink="/dashboard" class="hover:text-gray-200">Dashboard</a>
-        <a routerLink="/signup" class="hover:text-gray-200">Sign Up</a>
-        <a routerLink="/login" class="hover:text-gray-200">Login</a>
+  <header class="bg-blue-600 text-orange-500 py-4 shadow-lg">
+    <div class="bg-gray-800 flex items-center justify-between px-6 md:px-10">
+      <!-- Logo and Title -->
+      <h1 class="text-2xl font-bold flex items-center">
+        <img src="/assets/logo.png" alt="Prototype Logo" class="h-8 w-8 mr-2">
+        Prototype Project
+      </h1>
+      
+      <!-- Navigation -->
+      <nav class="space-x-4 text-sm md:text-base">
+        <a routerLink="/" class="hover:text-gray-200 transition-colors duration-200">Home</a>
+        <a routerLink="/savings" class="hover:text-gray-200 transition-colors duration-200">Savings</a>
+        <a routerLink="/cart" class="hover:text-gray-200 transition-colors duration-200">Cart</a>
+        <a routerLink="/dashboard" class="hover:text-gray-200 transition-colors duration-200">Dashboard</a>
+        <a routerLink="/signup" class="hover:text-gray-200 transition-colors duration-200 hidden md:inline-block">Sign Up</a>
+        <a routerLink="/login" class="hover:text-gray-200 transition-colors duration-200 hidden md:inline-block">Login</a>
       </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button class="text-gray-400 md:hidden" aria-label="Toggle Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
     </div>
   </header>
 </ng-container>
@@ -18,7 +31,6 @@
 <!-- Main Content -->
 <main>
   <router-outlet></router-outlet>
-  
 </main>
 
 <ng-container *ngIf="!isSignupPage && !isLoginPage">
