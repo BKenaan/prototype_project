@@ -268,3 +268,12 @@ java.lang.IllegalStateException: Item in cart cart1 is missing a userId.
 2024-12-10T17:48:15.876Z  INFO 95908 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 856 ms
 2024-12-10T17:48:16.155Z  INFO 95908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5400 (http) with context path ''
 2024-12-10T17:48:16.163Z  INFO 95908 --- [main] com.example.Main                         : Started Main in 1.505 seconds (process running for 1.773)
+2024-12-10T19:19:08.846Z  INFO 20220 --- [main] com.example.Main                         : Starting Main using Java 21.0.1 with PID 20220 (/Users/ramymekhzer/untitled folder 3/prototype_project-2/backend/build/classes/java/main started by ramymekhzer in /Users/ramymekhzer/untitled folder 3/prototype_project-2/backend)
+2024-12-10T19:19:08.847Z  INFO 20220 --- [main] com.example.Main                         : No active profile set, falling back to 1 default profile: "default"
+2024-12-10T19:19:09.481Z  INFO 20220 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5400 (http)
+2024-12-10T19:19:09.503Z  INFO 20220 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-10T19:19:09.504Z  INFO 20220 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2024-12-10T19:19:09.575Z  INFO 20220 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-10T19:19:09.575Z  INFO 20220 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 695 ms
+2024-12-10T19:19:09.826Z  INFO 20220 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5400 (http) with context path ''
+2024-12-10T19:19:09.833Z  INFO 20220 --- [main] com.example.Main                         : Started Main in 1.333 seconds (process running for 1.608)
