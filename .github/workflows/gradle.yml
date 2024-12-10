@@ -37,12 +37,12 @@ jobs:
 
       # Step 4: Grant execute permissions for the Gradle wrapper
       - name: Grant execute permission for Gradle
-        run: chmod +x gradlew
+        run: chmod +x backend/gradlew
 
       # Step 5: Build with Gradle
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./backend/gradlew build
 
       # Step 6: Run tests
       - name: Run tests
-        run: ./gradlew test
+        run: ./backend/gradlew test
