@@ -9,6 +9,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/helpers") 
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class HelpersController {
     private final Helpers helpers;

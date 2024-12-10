@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { OpenFoodApiService } from '../openfood-api.service';
+import { HelpersService } from '../../../helpers.service';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Add necessary modules here
+  imports: [CommonModule, FormsModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
@@ -18,25 +19,33 @@ export class CartComponent {
   participantId: string = '';
   searchQuery: string = '';
   searchResults: any[] = [];
-  
+  totalCost: number = 0;
 
-  constructor(private openFoodApi: OpenFoodApiService) {}
+  participants: string[] = []; // Explicitly define the type as string[]
+
+  constructor(
+    private openFoodApi: OpenFoodApiService,
+    private helpersService: HelpersService
+  ) {}
 
   removeItem(index: number): void {
-        this.cartItems.splice(index, 1);
+    this.cartItems.splice(index, 1);
   }
 
-  createCart(hostId: string) {
-    this.cart = {
-      cartId: Math.random().toString(36).substr(2, 9),
-      hostId,
-      pin: Math.floor(1000 + Math.random() * 9000).toString(),
-      participants: [],
-      items: [],
-    };
+  createCart(hostId: string): void {
+    const deadline = new Date().toISOString(); // Replace with actual deadline
+    this.helpersService.createSharedCart(hostId, this.participants, deadline).subscribe((cartId) => {
+      this.cart = {
+        cartId: cartId,
+        hostId,
+        participants: this.participants,
+        items: [],
+      };
+      console.log('Cart created with ID:', cartId);
+    });
   }
 
-  joinCart(cartId: string, pin: string) {
+  joinCart(cartId: string, pin: string): void {
     if (this.cart?.cartId === cartId && this.cart.pin === pin) {
       if (!this.cart.participants.includes(this.participantId)) {
         this.cart.participants.push(this.participantId);
@@ -44,13 +53,13 @@ export class CartComponent {
     }
   }
 
-  searchProducts() {
+  searchProducts(): void {
     this.openFoodApi.searchProducts(this.searchQuery).subscribe((response) => {
       this.searchResults = response.products || [];
     });
   }
 
-  addToCart(product: any) {
+  addToCart(product: any): void {
     if (!this.cart) return;
     const item = {
       productId: product.id || product.code,
@@ -59,6 +68,17 @@ export class CartComponent {
       quantity: 1,
       price: product.nutriments?.energy_value || 0,
     };
-    this.cart.items.push(item);
+    this.helpersService.addItemToCart(this.cart.cartId, this.participantId, item).subscribe(() => {
+      this.cart.items.push(item);
+      console.log('Item added to cart:', item);
+    });
+  }
+
+  calculateTotalCost(): void {
+    if (!this.cart) return;
+    this.helpersService.calculateTotalCost(this.cart.cartId).subscribe((total) => {
+      this.totalCost = total;
+      console.log('Total cost:', total);
+    });
   }
 }
