@@ -3,25 +3,31 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.4'
     id 'io.spring.dependency-management' version '1.1.3'
-
 }
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
+    // Core Libraries
     implementation 'info.picocli:picocli:4.7.6'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.konghq:unirest-java:3.13.13'
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // Testing Libraries
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mockito:mockito-core:4.11.0'
+    testImplementation 'org.mockito:mockito-inline:4.11.0'
+
+    // Test Runtime
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 application {
-    mainClass = 'Program'
+    mainClass = 'com.example.Program' // Replace with the fully qualified class name
 }
 
 tasks.named('test') {
