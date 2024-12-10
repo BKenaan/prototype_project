@@ -1,9 +1,11 @@
 package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +21,14 @@ public class HelpersController {
         this.helpers = helpers;
     }
 
-    @PostMapping("/create-cart")
-    public String createSharedCart(@RequestBody CreateCartRequest request) {
-        return helpers.createSharedCart(request.getHostId(), request.getParticipants(), request.getDeadline());
-    }
+   @PostMapping("/create-cart")
+public ResponseEntity<Map<String, String>> createSharedCart(@RequestBody CreateCartRequest request) {
+    String cartId = helpers.createSharedCart(request.getHostId(), request.getParticipants(), request.getDeadline());
+    Map<String, String> response = new HashMap<>();
+    response.put("cartId", cartId);
+    return ResponseEntity.ok(response);
+}
+
 
     @PostMapping("/add-item")
     public void addItemToCart(@RequestBody AddItemRequest request) {

@@ -4761,3 +4761,39 @@ Caused by: java.lang.IllegalArgumentException: When allowCredentials is true, al
 2024-12-10T23:45:32.086Z  INFO 31420 --- [http-nio-5400-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-12-10T23:45:32.087Z  INFO 31420 --- [http-nio-5400-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-12-10T23:45:32.087Z  INFO 31420 --- [http-nio-5400-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-10T23:49:23.875Z  INFO 5876 --- [main] com.example.Main                         : Starting Main using Java 17.0.8 with PID 5876 (C:\Users\basse\Downloads\prototype_project\backend\build\classes\java\main started by basse in C:\Users\basse\Downloads\prototype_project\backend)
+2024-12-10T23:49:23.876Z  INFO 5876 --- [main] com.example.Main                         : No active profile set, falling back to 1 default profile: "default"
+2024-12-10T23:49:24.478Z  INFO 5876 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5400 (http)
+2024-12-10T23:49:24.484Z  INFO 5876 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-10T23:49:24.485Z  INFO 5876 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2024-12-10T23:49:24.553Z  INFO 5876 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-10T23:49:24.553Z  INFO 5876 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 639 ms
+2024-12-10T23:49:24.808Z  INFO 5876 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5400 (http) with context path ''
+2024-12-10T23:49:24.814Z  INFO 5876 --- [main] com.example.Main                         : Started Main in 1.257 seconds (process running for 1.478)
+2024-12-10T23:49:32.495Z  INFO 5876 --- [http-nio-5400-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-10T23:49:32.495Z  INFO 5876 --- [http-nio-5400-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-10T23:49:32.496Z  INFO 5876 --- [http-nio-5400-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-10T23:51:43.856Z  INFO 26168 --- [main] com.example.Main                         : Starting Main using Java 17.0.8 with PID 26168 (C:\Users\basse\Downloads\prototype_project\backend\build\classes\java\main started by basse in C:\Users\basse\Downloads\prototype_project\backend)
+2024-12-10T23:51:43.857Z  INFO 26168 --- [main] com.example.Main                         : No active profile set, falling back to 1 default profile: "default"
+2024-12-10T23:51:44.459Z  INFO 26168 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5400 (http)
+2024-12-10T23:51:44.465Z  INFO 26168 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-10T23:51:44.466Z  INFO 26168 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2024-12-10T23:51:44.536Z  INFO 26168 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-10T23:51:44.536Z  INFO 26168 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 645 ms
+2024-12-10T23:51:44.767Z  INFO 26168 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5400 (http) with context path ''
+2024-12-10T23:51:44.773Z  INFO 26168 --- [main] com.example.Main                         : Started Main in 1.199 seconds (process running for 1.409)
+2024-12-10T23:51:54.837Z  INFO 26168 --- [http-nio-5400-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-10T23:51:54.837Z  INFO 26168 --- [http-nio-5400-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-10T23:51:54.838Z  INFO 26168 --- [http-nio-5400-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-10T23:53:13.484Z  INFO 36312 --- [main] com.example.Main                         : Starting Main using Java 17.0.8 with PID 36312 (C:\Users\basse\Downloads\prototype_project\backend\build\classes\java\main started by basse in C:\Users\basse\Downloads\prototype_project\backend)
+2024-12-10T23:53:13.485Z  INFO 36312 --- [main] com.example.Main                         : No active profile set, falling back to 1 default profile: "default"
+2024-12-10T23:53:14.109Z  INFO 36312 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5400 (http)
+2024-12-10T23:53:14.116Z  INFO 36312 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-10T23:53:14.116Z  INFO 36312 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2024-12-10T23:53:14.180Z  INFO 36312 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-10T23:53:14.180Z  INFO 36312 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 659 ms
+2024-12-10T23:53:14.422Z  INFO 36312 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5400 (http) with context path ''
+2024-12-10T23:53:14.428Z  INFO 36312 --- [main] com.example.Main                         : Started Main in 1.232 seconds (process running for 1.463)
+2024-12-10T23:53:24.802Z  INFO 36312 --- [http-nio-5400-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-10T23:53:24.802Z  INFO 36312 --- [http-nio-5400-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-10T23:53:24.803Z  INFO 36312 --- [http-nio-5400-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

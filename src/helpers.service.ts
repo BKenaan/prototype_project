@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { CartItem } from './app/shared-cart/shared-cart.model';
 
 @Injectable({
@@ -13,8 +13,14 @@ export class HelpersService {
 
   createSharedCart(hostId: string, participants: string[], deadline: string): Observable<string> {
     const requestBody = { hostId, participants, deadline };
-    return this.http.post<string>(`${this.apiUrl}/create-cart`, requestBody);
+    return this.http.post<string>('http://localhost:5400/api/helpers/create-cart', requestBody).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error details:', error);
+        return throwError(() => new Error('Something went wrong!'));
+      })
+    );
   }
+  
 
   addItemToCart(cartId: string, userId: string, item: CartItem): Observable<void> {
     const requestBody = { cartId, userId, item };
