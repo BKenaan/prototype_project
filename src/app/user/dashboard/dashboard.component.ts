@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
+  providers: [DashboardService]
 })
 export class DashboardComponent implements OnInit {
   totalSavings = 0;

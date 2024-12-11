@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedCartModule } from '../../shared-cart/shared-cart.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing'; // For HTTP service testing
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // If using forms
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from '../../shared-cart/cart/cart.component';
 
 describe('CartComponent', () => {
@@ -11,13 +11,13 @@ describe('CartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CartComponent], // Declare the component here
+      declarations: [CartComponent],
       imports: [
-        HttpClientTestingModule, // Add this if your component makes API calls
+        HttpClientTestingModule,
         FormsModule,
         ReactiveFormsModule,
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA], // Ignore unrecognized elements (e.g., Material components)
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
