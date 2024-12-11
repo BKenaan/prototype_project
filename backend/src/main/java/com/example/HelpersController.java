@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +71,24 @@ public ResponseEntity<Map<String, String>> createSharedCart(@RequestBody CreateC
             @RequestParam double groupDeliveryFee) {
         return helpers.getSavingsDetails(cartId, individualDeliveryFee, groupDeliveryFee);
     }
+
+    @GetMapping("/recent-activities")
+public List<Map<String, String>> getRecentActivities() {
+    List<Map<String, String>> activities = new ArrayList<>();
+    Map<String, String> activity1 = new HashMap<>();
+    activity1.put("description", "Added a new item to the cart");
+    activity1.put("date", "2024-12-11");
+    activity1.put("status", "Completed");
+    activities.add(activity1);
+
+    Map<String, String> activity2 = new HashMap<>();
+    activity2.put("description", "Removed an item from the cart");
+    activity2.put("date", "2024-12-10");
+    activity2.put("status", "Pending");
+    activities.add(activity2);
+
+    return activities;
+}
 
     @PostMapping("/finalize-order/{cartId}")
     public void finalizeOrder(@PathVariable String cartId) {

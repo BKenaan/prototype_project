@@ -1,14 +1,52 @@
-<div class="grid grid-cols-3 gap-4">
-  <div class="p-4 bg-blue-100 rounded shadow">
-    <h3 class="text-lg font-bold text-blue-600">Total Savings</h3>
-    <p class="text-xl font-semibold">${{ totalSavings }}</p>
+<div class="dashboard container mx-auto p-6 space-y-6">
+  <!-- Header Section -->
+  <header class="text-center mb-6">
+    <h1 class="text-4xl font-bold text-gray-800">Dashboard</h1>
+    <p class="text-lg text-gray-600">Track your savings, expenses, and more in one place</p>
+  </header>
+
+  <!-- Summary Cards Section -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Total Savings Card -->
+    <div class="bg-blue-500 text-white rounded-lg shadow p-4">
+      <h2 class="text-lg font-semibold">Total Savings</h2>
+      <p class="text-3xl font-bold mt-2">${{ totalSavings }}</p>
+      <p class="text-sm mt-2">Keep saving and track your progress.</p>
+    </div>
+
+    <!-- Total Expenses Card -->
+    <div class="bg-red-500 text-white rounded-lg shadow p-4">
+      <h2 class="text-lg font-semibold">Total Expenses</h2>
+      <p class="text-3xl font-bold mt-2">${{ totalExpenses }}</p>
+      <p class="text-sm mt-2">Watch your spending and plan ahead.</p>
+    </div>
+
+    <!-- Total Cart Value Card -->
+    <div class="bg-green-500 text-white rounded-lg shadow p-4">
+      <h2 class="text-lg font-semibold">Total Cart Value</h2>
+      <p class="text-3xl font-bold mt-2">${{ totalCartValue }}</p>
+      <p class="text-sm mt-2">Current value of all items in your cart.</p>
+    </div>
+
+    <!-- Pending Orders Card -->
+    <div class="bg-yellow-500 text-white rounded-lg shadow p-4">
+      <h2 class="text-lg font-semibold">Pending Orders</h2>
+      <p class="text-3xl font-bold mt-2">{{ pendingOrders }}</p>
+      <p class="text-sm mt-2">Finish your orders to avoid delays.</p>
+    </div>
   </div>
-  <div class="p-4 bg-green-100 rounded shadow">
-    <h3 class="text-lg font-bold text-green-600">Total Cart Value</h3>
-    <p class="text-xl font-semibold">${{ totalCartValue }}</p>
-  </div>
-  <div class="p-4 bg-yellow-100 rounded shadow">
-    <h3 class="text-lg font-bold text-yellow-600">Pending Orders</h3>
-    <p class="text-xl font-semibold">{{ pendingOrders }}</p>
+
+  <!-- Recent Activity Section -->
+  <div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-2xl font-semibold mb-4">Recent Activity</h2>
+    <ul class="divide-y divide-gray-200">
+      <li *ngFor="let activity of recentActivities" class="py-4 flex items-center">
+        <div class="flex-1">
+          <p class="text-lg font-medium text-gray-800">{{ activity.description }}</p>
+          <p class="text-sm text-gray-500">{{ activity.date }}</p>
+        </div>
+        <span class="text-sm text-gray-600">{{ activity.status }}</span>
+      </li>
+    </ul>
   </div>
 </div>
