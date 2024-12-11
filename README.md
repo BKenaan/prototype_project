@@ -30,6 +30,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
    "docker build -t angular-app ."
    "docker run -p 4300:4200 angular-app"
    "acces application at http://localhost:4300"
-## Further help
+## Back End Specific
+Start the backend
+cd backend
+./gradlew bootRun
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
