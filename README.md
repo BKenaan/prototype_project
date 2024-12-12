@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
 then i upgraded it version 19.0
+
+## To run both front and back-end server
+npm start
   
 ## Development server
 
