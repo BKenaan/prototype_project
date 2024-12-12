@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.example.DataModel;
+import com.Aire.DataModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;

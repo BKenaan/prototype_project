@@ -5,11 +5,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.example.Helpers;
-import com.example.HelpersController;
-import com.example.CreateCartRequest;
-import com.example.DataModel;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,6 +13,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import com.Aire.CreateCartRequest;
+import com.Aire.DataModel;
+import com.Aire.Helpers;
+import com.Aire.HelpersController;
 
 import java.util.*;
 

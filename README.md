@@ -4,11 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 then i upgraded it version 19.0
 
 ## To run both front and back-end server
-npm start
+run npm start
   
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Login Credentials
+user: test
+pass: test
 
 ## Code scaffolding
 
