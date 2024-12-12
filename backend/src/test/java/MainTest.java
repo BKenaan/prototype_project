@@ -8,7 +8,6 @@ import com.example.Helpers;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public class MainTest {
 
@@ -22,17 +21,13 @@ public class MainTest {
     public void setUp() {
         helpers = new Helpers();
         List<String> participants = Arrays.asList("user1", "user2", "user3");
-        Date deadline = new Date(System.currentTimeMillis() + 3600 * 1000); // 1 hour from now
+        Date deadline = new Date(System.currentTimeMillis() + 3600 * 1000);
         cartId = helpers.createSharedCart("host123", participants, deadline);
 
         milk = new DataModel.Item("item1", "Milk", "user1", 2, 1.5);
         bread = new DataModel.Item("item2", "Bread", "user2", 1, 0.8);
         eggs = new DataModel.Item("item3", "Eggs", "user3", 12, 0.1);
     }
-
-    
-
-   
 
     @Test
     public void testViewCartDetails() {

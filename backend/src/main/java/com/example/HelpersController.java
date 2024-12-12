@@ -119,10 +119,5 @@ public List<Map<String, String>> getRecentActivities() {
     public List<DataModel.Product> parseApiResponse(@RequestBody String response) {
         return helpers.parseApiResponse(response);
     }
-
-    
-
-
-   
-    
+ 
 }
